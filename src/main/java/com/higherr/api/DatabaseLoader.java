@@ -1,5 +1,7 @@
 package com.higherr.api;
 
+import com.higherr.api.models.Company;
+import com.higherr.api.models.Profile;
 import com.higherr.api.models.User;
 import com.higherr.api.repositories.UserRepository;
 
@@ -19,6 +21,12 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        this.repository.save(new User("Frodo", "Baggins", "ring bearer"));
+        Profile profile = new Profile(
+                new Company("Facebook"),
+                false,
+                "Engineer",
+                5
+        );
+        this.repository.save(new User("Frodo", "Baggins", "ring bearer", profile));
     }
 }
