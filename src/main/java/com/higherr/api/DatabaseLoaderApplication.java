@@ -25,9 +25,14 @@ public class DatabaseLoaderApplication implements CommandLineRunner {
                 "Engineer",
                 5
         );
+        City city = new City(
+                "City Name",
+                new Country("Country Name"));
+
         User author = new User("Frodo", "Baggins", "ring bearer", profile);
-        Job newJob = new Job("FB Job1", "Facebook", "Singapore", "Singapore", "Software Engineering",
-                "Full Time", "New job description", "New job responsibilities", "New job requirements",
+        Job newJob = new Job("FB Job1", new Company("Facebook"), new City("cityName", new Country("Singapore")),
+                "Software Engineering",
+                EmploymentType.FULL_TIME, "New job description", "New job responsibilities", "New job requirements",
                 1, "http://higherr.com/", author);
 
         this.repository.save(new Application(newJob, author, author, null, null));
