@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Entity
-public class Application {
+public class Application extends BaseModel {
 
     private @Id @GeneratedValue Long id;
 
