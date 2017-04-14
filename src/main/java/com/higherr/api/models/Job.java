@@ -11,8 +11,8 @@ public class Job extends BaseModel {
     private @Id @GeneratedValue Long id;
 
     private String jobTitle;
-    private Company company;
-    private City jobCity;
+    private @ManyToOne(cascade = {CascadeType.ALL}) Company company;
+    private @ManyToOne(cascade = {CascadeType.ALL}) City jobCity;
     private String department;
     private EmploymentType employmentType;
     private String jobDescription;

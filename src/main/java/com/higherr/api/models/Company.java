@@ -5,9 +5,10 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
+@Entity
 public class Company extends BaseModel {
 
-    @Column(unique=true)
+//    @Column(unique=true)
     private String name;
 
     private Company() {}

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Data
+@Entity
 public class Country extends BaseModel {
 
     @Column(unique=true)

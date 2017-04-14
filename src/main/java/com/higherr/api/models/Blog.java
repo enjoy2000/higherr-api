@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 public class Blog extends BaseModel {
 
-    private @Id @GeneratedValue Long id;
-
     private @ManyToOne(cascade={CascadeType.ALL}) User author;
     private String title;
     private String body; //uploading additional file from application

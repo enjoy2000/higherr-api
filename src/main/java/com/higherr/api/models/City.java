@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Data
+@Entity
 public class City extends BaseModel {
 
     private String name;
