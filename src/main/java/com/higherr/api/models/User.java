@@ -5,9 +5,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.higherr.api.config.WebSecurityConfig;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -16,6 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper=false)
 @Table(name = "HigherrUser")
 public class User extends BaseModel {
 
