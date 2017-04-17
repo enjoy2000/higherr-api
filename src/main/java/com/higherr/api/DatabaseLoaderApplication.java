@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-@Component
+//@Component
 public class DatabaseLoaderApplication implements CommandLineRunner {
 
     private final ApplicationRepository repository;
@@ -25,7 +25,8 @@ public class DatabaseLoaderApplication implements CommandLineRunner {
                 "Engineer",
                 5
         );
-        User author = new User("Frodo", "Baggins", "ring bearer", profile);
+        User author = new User("admin", "admin", "Hat",
+                "Dao", "enjoy3013@gmail.com", true, profile);
         Job newJob = new Job("FB Job1", "Facebook", "Singapore", "Singapore", "Software Engineering",
                 "Full Time", "New job description", "New job responsibilities", "New job requirements",
                 1, "http://higherr.com/", author);

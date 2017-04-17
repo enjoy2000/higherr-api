@@ -1,11 +1,13 @@
 package com.higherr.api.models;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper=false)
 public class Blog {
 
     private @Id @GeneratedValue Long id;

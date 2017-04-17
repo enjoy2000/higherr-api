@@ -1,15 +1,13 @@
 package com.higherr.api;
 
-import com.higherr.api.models.Company;
-import com.higherr.api.models.Profile;
-import com.higherr.api.models.User;
+import com.higherr.api.models.*;
 import com.higherr.api.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class DatabaseLoader implements CommandLineRunner {
 
     private final UserRepository repository;
@@ -22,11 +20,14 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         Profile profile = new Profile(
-                new Company("Facebook"),
+                new Company("BuzzElement"),
                 false,
                 "Engineer",
                 5
         );
-        this.repository.save(new User("Frodo", "Baggins", "ring bearer", profile));
+        User user = new User("enjoy2000", "password","Hat",
+                "Dao", "enjoy3013@gmail.com",
+                true, profile);
+        this.repository.save(user);
     }
 }
