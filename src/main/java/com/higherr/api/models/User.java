@@ -1,15 +1,13 @@
 package com.higherr.api.models;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +43,7 @@ public class User extends BaseModel {
     @Size(min = 4, max = 50)
     private String email;
 
+    @JsonProperty
     private @OneToOne(cascade = {CascadeType.ALL}) Profile profile;
 
     @NotNull
@@ -53,6 +52,7 @@ public class User extends BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastPasswordResetDate;
 
+    @JsonProperty
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "UserAuthority",
@@ -60,25 +60,15 @@ public class User extends BaseModel {
             inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
     private List<Authority> authorities;
 
-    public User(String username, String password, String firstName, String lastName, String email, Boolean enabled, Profile profile) {
+    @GeneratePojoBuilder
+    public User(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
-        this.setPassword(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.profile = profile;
-        this.enabled = enabled;
+        this.enabled = true;
     }
 
-    private User() {}
-
-    public void setPassword(String password) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
-    }
-
-    @PrePersist
-    public void setRoleUser(User user) {
-        
-    }
+    public User() {}
 }
