@@ -1,15 +1,13 @@
 package com.higherr.api.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class User extends BaseModel {
 
     @Column(length = 100)
     @NotNull
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) 
     @Size(min = 4, max = 100)
     private String password;
 
@@ -40,11 +38,12 @@ public class User extends BaseModel {
     @Size(min = 2, max = 50)
     private String lastName;
 
-    @Column(length = 50)
+    @Column(unique = true, length = 50)
     @NotNull
     @Size(min = 4, max = 50)
     private String email;
 
+    @JsonProperty
     private @OneToOne(cascade = {CascadeType.ALL}) Profile profile;
 
     @NotNull
@@ -53,6 +52,7 @@ public class User extends BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastPasswordResetDate;
 
+    @JsonProperty
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "UserAuthority",
@@ -60,16 +60,15 @@ public class User extends BaseModel {
             inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
     private List<Authority> authorities;
 
-    public User(String username, String password, String firstName, String lastName, String email, Boolean enabled, Profile profile) {
+    @GeneratePojoBuilder
+    public User(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.profile = profile;
-        this.enabled = enabled;
+        this.enabled = true;
     }
 
-    private User() {}
+    public User() {}
 }

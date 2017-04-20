@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 public class Authority extends BaseModel {
 
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     @NotNull
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
