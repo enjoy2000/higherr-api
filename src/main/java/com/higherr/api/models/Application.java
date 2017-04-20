@@ -9,8 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Application extends BaseModel {
 
-    private @Id @GeneratedValue Long id;
-
     private @ManyToOne(cascade={CascadeType.ALL}) Job job;
     private @ManyToOne(cascade={CascadeType.ALL}) User applicant;
     private @ManyToOne(cascade={CascadeType.ALL}) User referrer;
