@@ -19,22 +19,5 @@ public class DatabaseLoaderApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        Profile profile = new Profile(
-                new Company("Facebook1"),
-                false,
-                "Engineer",
-                5
-        );
-        City city = new City(
-                "City Name",
-                new Country("Country Name"));
-
-        User author = new User("Frodo", "Baggins", "ring bearer", profile);
-        Job newJob = new Job("FB Job1", new Company("Facebook1"), new City("cityName", new Country("Singapore")),
-                "Software Engineering",
-                EmploymentType.FULL_TIME, "New job description", "New job responsibilities", "New job requirements",
-                1, "http://higherr.com/1", author);
-
-        this.repository.save(new Application(newJob, author, author, null, null));
     }
 }

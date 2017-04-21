@@ -19,17 +19,17 @@ public class DatabaseLoaderJob implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        Profile profile = new Profile(
-                new Company("Facebook1"),
-                false,
-                "Engineer",
-                5
-        );
-        User author = new User("Frodo", "Baggins", "ring bearer", profile);
-
-        this.repository.save(new Job("FB Job1", new Company("Facebook1"), new City("cityName", new Country("Singapore")),
-                "Software Engineering",
-                EmploymentType.FULL_TIME, "New job description", "New job responsibilities", "New job requirements",
-                1, "http://higherr.com/", author));
+//        Profile profile = new Profile(
+//                new Company("Facebook1"),
+//                false,
+//                "Engineer",
+//                5
+//        );
+//        User author = new User("Frodo", "Baggins", "ring bearer", profile);
+//
+//        this.repository.save(new Job("FB Job1", new Company("Facebook1"), new City("cityName", new Country("Singapore")),
+//                "Software Engineering",
+//                EmploymentType.FULL_TIME, "New job description", "New job responsibilities", "New job requirements",
+//                1, "http://higherr.com/", author));
     }
 }

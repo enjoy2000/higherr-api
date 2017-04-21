@@ -21,13 +21,13 @@ public class DatabaseLoaderBlog implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        Profile profile = new Profile(
-                new Company("Facebook1"),
-                false,
-                "Engineer",
-                5
-        );
-        User author = new User("Frodo", "Baggins", "ring bearer", profile);
-        this.repository.save(new Blog(author, "new title", "new body", ""));
+//        Profile profile = new Profile(
+//                new Company("Facebook1"),
+//                false,
+//                "Engineer",
+//                5
+//        );
+//        User author = new User("Frodo", "Baggins", "ring bearer", profile);
+//        this.repository.save(new Blog(author, "new title", "new body", ""));
     }
 }
