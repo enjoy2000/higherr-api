@@ -6,40 +6,37 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class Job {
+public class Job extends BaseModel {
 
-    private @Id @GeneratedValue Long id;
-
-    private String jobTitle;
-    private String companyName;
-    private String jobCity; //multiple cities stored as csv
-    private String jobCountry; //multiple countries stored as csv
+    private String title;
+    private @ManyToOne(cascade = {CascadeType.ALL}) Company company;
+    private @ManyToOne(cascade = {CascadeType.ALL}) City city;
     private String department;
-    private String employmentType;
-    private String jobDescription;
-    private String jobResponsibilities;
-    private String jobRequirements;
+    private EmploymentType employmentType;
+    private String description;
+    private String responsibilities;
+    private String requirements;
     private Integer referQuestionGroup;
-    private String jobOfficialUrl;
+    @Column(unique=true)
+    private String officialUrl;
     private @ManyToOne(cascade={CascadeType.ALL}) User author;
 
     private Job() {}
 
 
-    public Job(String jobTitle, String companyName, String jobCity, String jobCountry, String department,
-               String employmentType, String jobDescription, String jobResponsibilities, String jobRequirements,
-               int referQuestionGroup, String jobOfficialUrl, User author) {
-        this.jobTitle = jobTitle;
-        this.companyName = companyName;
-        this.jobCity = jobCity;
-        this.jobCountry = jobCountry;
+    public Job(String title, Company company, City city, String department,
+               EmploymentType employmentType, String description, String responsibilities, String requirements,
+               int referQuestionGroup, String officialUrl, User author) {
+        this.title = title;
+        this.company = company;
+        this.city = city;
         this.department = department;
         this.employmentType = employmentType;
-        this.jobDescription = jobDescription;
-        this.jobResponsibilities = jobResponsibilities;
-        this.jobRequirements = jobRequirements;
+        this.description = description;
+        this.responsibilities = responsibilities;
+        this.requirements = requirements;
         this.referQuestionGroup = referQuestionGroup;
-        this.jobOfficialUrl = jobOfficialUrl;
+        this.officialUrl = officialUrl;
         this.author = author;
     }
 }

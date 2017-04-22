@@ -8,9 +8,10 @@ import javax.persistence.*;
 @Data
 @Entity
 @EqualsAndHashCode(callSuper=false)
-public class Blog {
 
-    private @Id @GeneratedValue Long id;
+public class Blog extends BaseModel {
+
+
 
     private @ManyToOne(cascade={CascadeType.ALL}) User author;
     private String title;
