@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Blog extends BaseModel {
 
 
+
     private @ManyToOne(cascade={CascadeType.ALL}) User author;
     private String title;
     private String body; //uploading additional file from application

@@ -1,0 +1,24 @@
+jwt:
+  header: Authorization
+  secret: my-very-secret-key # need to use env
+  expiration: 864000
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+logging:
+  level:
+    org.springframework.security: DEBUG
+server:
+  # config context path to "/" by setting an empty string
+  contextPath:
+  port: 8080
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+
