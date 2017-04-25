@@ -5,6 +5,7 @@ jwt:
   route:
     authentication:
       path: auth
+      social: authsocial
       refresh: refresh
 logging:
   level:

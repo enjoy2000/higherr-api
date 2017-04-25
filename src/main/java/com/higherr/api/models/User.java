@@ -24,9 +24,13 @@ public class User extends BaseModel {
 
     @Column(length = 100)
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Size(min = 4, max = 100)
     private String password;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Size(min = 4, max = 100)
+    private String token;
 
     @Column(length = 50)
     @NotNull
@@ -60,6 +64,10 @@ public class User extends BaseModel {
             inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
     private List<Authority> authorities;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sign_in_provider", length = 20)
+    private SocialMediaService signInProvider;
+
     @GeneratePojoBuilder
     public User(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
@@ -71,4 +79,8 @@ public class User extends BaseModel {
     }
 
     public User() {}
+
+    public enum SocialMediaService {
+        FACEBOOK, TWITTER, LINKEDIN
+    }
 }

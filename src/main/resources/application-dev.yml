@@ -5,6 +5,7 @@ jwt:
   route:
     authentication:
       path: auth
+      social: authsocial
       refresh: refresh
 logging:
   level:
@@ -22,3 +23,7 @@ spring:
     username: hatdao
     password:
 
+  social:
+    facebook:
+      app-id: 1818845775106646
+      app-secret: cc789ccbf38c879a988b78d59c4a2d50

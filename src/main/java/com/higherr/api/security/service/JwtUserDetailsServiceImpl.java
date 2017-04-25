@@ -13,7 +13,7 @@ import com.higherr.api.security.JwtUserFactory;
  * Created by stephan on 20.03.16.
  */
 @Service
-public class JwtUserDetailsServiceImpl implements UserDetailsService {
+public class JwtUserDetailsServiceImpl implements JwtUserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
@@ -24,6 +24,16 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
+        } else {
+            return JwtUserFactory.create(user);
+        }
+    }
+
+    public UserDetails loadUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("No user found with username '%s'.", email));
         } else {
             return JwtUserFactory.create(user);
         }
