@@ -22,7 +22,6 @@ spring:
     url: jdbc:postgresql://127.0.0.1:5432/higherr
     username: hatdao
     password:
-
   social:
     facebook:
       app-id: 1818845775106646

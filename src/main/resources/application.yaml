@@ -22,4 +22,7 @@ spring:
     url: ${JDBC_DATABASE_URL}
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
-
+  social:
+    facebook:
+      app-id: 1818845775106646
+      app-secret: cc789ccbf38c879a988b78d59c4a2d50
